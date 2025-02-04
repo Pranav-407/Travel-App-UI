@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:travel_app/views/login_screen.dart';
+import 'package:travel_app/views/home_screen.dart';
 
 class OnboardingScreens extends StatefulWidget {
   const OnboardingScreens({super.key});
@@ -53,7 +53,7 @@ class _OnboardingScreensState extends State<OnboardingScreens> {
   void _handleButtonPress() {
     if (isLastPage) {
       // Navigate to main app
-      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => LoginScreen(),), (route) => false,);
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => HomeScreen(),), (route) => false,);
     } else {
       // Go to next page
       _controller.nextPage(
