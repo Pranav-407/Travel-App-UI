@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:travel_app/views/details_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -181,6 +182,23 @@ class ProfileBanner extends StatelessWidget {
 }
 
 class Cards extends StatelessWidget {
+  static const List bestDestinations = [
+    {
+      'image': 'assets/images/card1.jpeg',
+      'title': 'Niladri Reservoir',
+      'location': 'Tekergat, Sunamgnj',
+      'locationDetail' : 'Tekergat',
+      'details': 'You will get a complete travel package on the beaches. Packages in the form of airline tickets, recommended Hotel rooms, Have you ever been on holiday to the Greek '
+    },
+    {
+      'image': 'assets/images/card2.jpeg',
+      'title': 'Darma Reservoir',
+      'location': 'Darma, Kuningan',
+      'locationDetail' : 'Darma',
+      'details': 'You will get a complete travel package on the beaches. Packages in the form of airline tickets, recommended Hotel rooms, Have you ever been on holiday to the Greek '
+    }
+  ];
+
   const Cards({super.key});
 
   @override
@@ -192,79 +210,90 @@ class Cards extends StatelessWidget {
         child: ListView.builder(
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
-          itemCount: 2,
+          itemCount: bestDestinations.length,
           itemBuilder: (context, index) {
-            return Container(
-              height: 385,
-              width: 270,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(24), // Rounded corners
-              ),
-              child: Center(
-                child: Container(
-                  height: 356,
-                  width: 240,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20), // Rounded corners
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        height: 286,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
+            return GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailsScreen(card: bestDestinations[index])));
+              },
+              child: Container(
+                height: 385,
+                width: 270,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                child: Center(
+                  child: Container(
+                    height: 356,
+                    width: 240,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 286,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              bestDestinations[index]['image'],
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
-                        child: ClipRRect(borderRadius: BorderRadius.circular(20),child: Image.asset('assets/images/card1.jpeg',fit: BoxFit.cover,)),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(left: 6.0, right: 6, top: 15),
-                        child: Row(
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(left: 6.0, right: 6, top: 15),
+                          child: Row(
+                            children: [
+                              Text(
+                                bestDestinations[index]['title'],
+                                style: GoogleFonts.poppins(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              Spacer(),
+                              SvgPicture.asset('assets/svg/star.svg'),
+                              SizedBox(width: 4),
+                              Text(
+                                '4.7',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w400,
+                                  letterSpacing: 0.3,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 13,
+                        ),
+                        Row(
                           children: [
+                            SvgPicture.asset('assets/svg/location.svg'),
+                            const SizedBox(
+                              width: 4,
+                            ),
                             Text(
-                              'Niladri Reservoir',
+                              bestDestinations[index]['location'],
                               style: GoogleFonts.poppins(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w400,
+                                color: Color.fromRGBO(125, 132, 141, 1),
                               ),
                             ),
                             Spacer(),
-                            SvgPicture.asset('assets/svg/star.svg'),
-                            SizedBox(width: 4),
-                            Text(
-                              '4.7',
-                              style: GoogleFonts.poppins(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400,
-                                letterSpacing: 0.3,
-                              ),
-                            ),
+                            AvatarList()
                           ],
                         ),
-                      ),
-                      const SizedBox(
-                        height: 13,
-                      ),
-                      Row(
-                        children: [
-                          SvgPicture.asset('assets/svg/location.svg'),
-                          const SizedBox(
-                            width: 4,
-                          ),
-                          Text(
-                            'Tekergat, Sunamgnj',
-                            style: GoogleFonts.poppins(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w400,
-                              color: Color.fromRGBO(125, 132, 141, 1),
-                            ),
-                          ),
-                          Spacer(),
-                          AvatarList()
-                        ],
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
