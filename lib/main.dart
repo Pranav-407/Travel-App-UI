@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel_app/views/profile_screen.dart';
 import 'package:travel_app/views/splash_screen.dart';
 
 void main() {
@@ -15,7 +16,7 @@ class MainApp extends StatelessWidget {
         fontFamily: "Geometr415BlkBT"
       ),
       debugShowCheckedModeBanner: false,
-      home: SplashScreen()
+      home: ProfileScreen()
     );
   }
 }
