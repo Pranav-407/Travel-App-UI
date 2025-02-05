@@ -12,8 +12,11 @@ dependencies:
     sdk: flutter
   flutter_svg: ^2.0.17
   google_fonts: ^6.2.1
+  intl: ^0.20.2
   introduction_screen: ^3.1.14
+  salomon_bottom_bar: ^3.3.2
   smooth_page_indicator: ^1.2.0+3
+  table_calendar: ^3.2.0
 
 dev_dependencies:
   flutter_test:
