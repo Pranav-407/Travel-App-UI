@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:travel_app/views/chats_screen.dart';
 import 'package:travel_app/views/home_screen.dart';
+import 'package:travel_app/views/messages_screen.dart';
 import 'package:travel_app/views/profile_screen.dart';
 import 'package:travel_app/views/schedule_screen.dart';
+import 'package:travel_app/views/search_screen.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
   const CustomBottomNavBar({super.key});
@@ -19,8 +20,8 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
   final List<Widget> _screens = [
     const HomeScreen(),
     const ScheduleScreen(),
-    const HomeScreen(),
-    const ChatScreen(),
+    const SearchScreen(),
+    const MessagesScreen(),
     const ProfileScreen(),
   ];
   
@@ -60,19 +61,22 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                 
                 // Special styling for search button
                 if (index == 2) {
-                  return Container(
-                    width: 60,
-                    height: 60,
-                    decoration: const BoxDecoration(
-                      color: Colors.blue,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: SvgPicture.asset(
-                        item.icon,
-                        color: Colors.white,
-                        
+                  return GestureDetector(
+                    onTap: () => setState(() => _selectedIndex = index),
+                    child: Container(
+                      width: 60,
+                      height: 60,
+                      decoration: const BoxDecoration(
+                        color: Colors.blue,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: SvgPicture.asset(
+                          item.icon,
+                          color: Colors.white,
+                          
+                        ),
                       ),
                     ),
                   );

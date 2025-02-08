@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:travel_app/views/view_screen.dart';
 
 class DetailsScreen extends StatelessWidget {
   final Map card;
@@ -210,18 +211,26 @@ class DetailsScreen extends StatelessWidget {
                           color: Color.fromRGBO(125, 132, 141, 1)),
                     ),
                     SizedBox(height: 20),
-                    Container(
-                      height: 56,
-                      decoration: BoxDecoration(
-                          color: Color.fromRGBO(13, 110, 253, 1),
-                          borderRadius: BorderRadius.circular(16)),
-                      child: Center(
-                        child: Text(
-                          "Book Now",
-                          style: GoogleFonts.poppins(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                         context,
+                         MaterialPageRoute(builder: (context) => ViewScreen()),
+                         );
+                      },
+                      child: Container(
+                        height: 56,
+                        decoration: BoxDecoration(
+                            color: Color.fromRGBO(13, 110, 253, 1),
+                            borderRadius: BorderRadius.circular(16)),
+                        child: Center(
+                          child: Text(
+                            "Book Now",
+                            style: GoogleFonts.poppins(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),

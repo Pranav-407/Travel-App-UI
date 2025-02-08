@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travel_app/constants/constants.dart';
+import 'package:travel_app/views/chats_screen.dart';
 
 class MessagesScreen extends StatefulWidget {
   const MessagesScreen({super.key});
@@ -21,41 +22,37 @@ class _MessagesScreenState extends State<MessagesScreen> {
       isDelivered: false,
     ),
     MessageItem(
-      name: "Adom Shafi",
-      avatar: "assets/images/chat2.png",
-      time: "08:42",
-      message: "Typing.....",
-      dotColor: Color.fromRGBO(125, 132, 141, 1),
-      isDelivered: true,
-      isRead: false
-    ),
+        name: "Adom Shafi",
+        avatar: "assets/images/chat2.png",
+        time: "08:42",
+        message: "Typing.....",
+        dotColor: Color.fromRGBO(125, 132, 141, 1),
+        isDelivered: true,
+        isRead: false),
     MessageItem(
-      name: "HR Rumen",
-      avatar: "assets/images/chat3.png",
-      time: "Yesterday",
-      message: "You: Cool! ☺️ Let’s meet at 18:00 near the traveling!",
-      dotColor: Color.fromRGBO(25, 176, 0, 1),
-      isDelivered: true,
-      isRead: false
-    ),
+        name: "HR Rumen",
+        avatar: "assets/images/chat3.png",
+        time: "Yesterday",
+        message: "You: Cool! ☺️ Let’s meet at 18:00 near the traveling!",
+        dotColor: Color.fromRGBO(25, 176, 0, 1),
+        isDelivered: true,
+        isRead: false),
     MessageItem(
-      name: "Anjelina",
-      avatar: "assets/images/chat4.png",
-      time: "07:56",
-      message: "You: Hey, will you come to the party on Saturday?",
-      dotColor: Color.fromRGBO(254, 35, 82, 1),
-      isDelivered: false,
-      isRead: false
-    ),
+        name: "Anjelina",
+        avatar: "assets/images/chat4.png",
+        time: "07:56",
+        message: "You: Hey, will you come to the party on Saturday?",
+        dotColor: Color.fromRGBO(254, 35, 82, 1),
+        isDelivered: false,
+        isRead: false),
     MessageItem(
-      name: "Alexa Shorna",
-      avatar: "assets/images/chat5.png",
-      time: "05:52",
-      message: "Thank you for coming! Your or...",
-      dotColor: Color.fromRGBO(25, 176, 0, 1),
-      isDelivered: true,
-      isRead: true
-    ),
+        name: "Alexa Shorna",
+        avatar: "assets/images/chat5.png",
+        time: "05:52",
+        message: "Thank you for coming! Your or...",
+        dotColor: Color.fromRGBO(25, 176, 0, 1),
+        isDelivered: true,
+        isRead: true),
   ];
 
   @override
@@ -73,9 +70,10 @@ class _MessagesScreenState extends State<MessagesScreen> {
                     Text(
                       "Messages",
                       style: GoogleFonts.poppins(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                          color: black),
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: black,
+                      ),
                     ),
                     Spacer(),
                     Container(
@@ -154,7 +152,9 @@ class _MessagesScreenState extends State<MessagesScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
@@ -162,97 +162,105 @@ class _MessagesScreenState extends State<MessagesScreen> {
                   return Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20.0, vertical: 12),
-                    child: Container(
-                      constraints: BoxConstraints(minHeight: 60, maxHeight: 70),
-                      width: double.infinity,
-                      child: Row(
-                        children: [
-                          Stack(
-                            children: [
-                              SizedBox(
-                                width: 67,
-                                height: 67,
-                                child: ClipOval(
-                                  clipBehavior: Clip.antiAlias,
-                                  child: Image.asset(chats[index].avatar),
-                                ),
-                              ),
-                              Positioned(
-                                bottom: 0,
-                                right: 0,
-                                child: Container(
-                                  width: 20,
-                                  height: 20,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Colors.white,
-                                  ),
-                                  child: Center(
-                                    child: Container(
-                                      width: 16,
-                                      height: 16,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: chats[index].dotColor,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(width: 15),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
+                    child: GestureDetector(
+                      onTap: (){
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChatScreen(),));
+                      },
+                      child: Container(
+                        constraints: BoxConstraints(minHeight: 60, maxHeight: 70),
+                        width: double.infinity,
+                        child: Row(
+                          children: [
+                            Stack(
                               children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      chats[index].name,
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                    Spacer(),
-                                    chats[index].isDelivered
-                                        ?  chats[index].isRead == null || chats[index].isRead == false ?
-                                          SvgPicture.asset(
-                                            'assets/svg/unread.svg') :
-                                          SvgPicture.asset(
-                                            'assets/svg/read.svg')
-                                        : SvgPicture.asset(
-                                            'assets/svg/sent.svg'),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      chats[index].time,
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w400,
-                                        color: Color.fromRGBO(125, 132, 141, 1),
-                                      ),
-                                    ),
-                                  ],
+                                SizedBox(
+                                  width: 67,
+                                  height: 67,
+                                  child: ClipOval(
+                                    clipBehavior: Clip.antiAlias,
+                                    child: Image.asset(chats[index].avatar),
+                                  ),
                                 ),
-                                SizedBox(height: 6),
-                                Text(
-                                  chats[index].message,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400,
-                                    color: chats[index].message != "Typing....." ? Color.fromRGBO(125, 132, 141, 1) : Color.fromRGBO(13, 110, 253, 1),
+                                Positioned(
+                                  bottom: 0,
+                                  right: 0,
+                                  child: Container(
+                                    width: 20,
+                                    height: 20,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.white,
+                                    ),
+                                    child: Center(
+                                      child: Container(
+                                        width: 16,
+                                        height: 16,
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: chats[index].dotColor,
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ],
                             ),
-                          ),
-                        ],
+                            SizedBox(width: 15),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                        chats[index].name,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                      Spacer(),
+                                      chats[index].isDelivered
+                                          ? chats[index].isRead == null ||
+                                                  chats[index].isRead == false
+                                              ? SvgPicture.asset(
+                                                  'assets/svg/unread.svg')
+                                              : SvgPicture.asset(
+                                                  'assets/svg/read.svg')
+                                          : SvgPicture.asset(
+                                              'assets/svg/sent.svg'),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        chats[index].time,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.w400,
+                                          color: Color.fromRGBO(125, 132, 141, 1),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 6),
+                                  Text(
+                                    chats[index].message,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                      color: chats[index].message != "Typing....."
+                                          ? Color.fromRGBO(125, 132, 141, 1)
+                                          : Color.fromRGBO(13, 110, 253, 1),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );
@@ -276,13 +284,12 @@ class MessageItem {
   bool? isRead;
   Color dotColor;
 
-  MessageItem({
-    required this.name,
-    required this.avatar,
-    required this.time,
-    required this.message,
-    required this.isDelivered,
-    required this.dotColor,
-    this.isRead
-  });
+  MessageItem(
+      {required this.name,
+      required this.avatar,
+      required this.time,
+      required this.message,
+      required this.isDelivered,
+      required this.dotColor,
+      this.isRead});
 }
